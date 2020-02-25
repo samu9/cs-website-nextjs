@@ -1,0 +1,14 @@
+.divider{
+    width: 100%;
+    padding: 2rem 0rem;
+
+    div{
+        height: 1px;
+        width: 80%;
+        margin: auto;
+        background-color: #718096;
+        @include respond-to('small'){
+            width: 850px;
+        }
+    }
+}

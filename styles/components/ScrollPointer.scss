@@ -1,0 +1,17 @@
+.scrollPointer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .point{
+        display: block;
+        width: .5rem;
+        height: .5rem;
+        margin: 0 .3rem;
+        border-radius: 50%;
+        background-color: rgba($primary-light,.5);
+        cursor: pointer;
+        &.active{
+            background-color: $primary;
+        }
+    }
+}

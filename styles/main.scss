@@ -1,0 +1,40 @@
+@import './utils/variables';
+@import './utils/functions';
+
+@import './base/typography';
+@import './base/reset';
+
+@import './components/ItalyMap';
+@import './components/Collapsible';
+@import './components/ScrollPointer';
+@import './components/ChatButton';
+@import './components/Divider';
+
+@import './HeaderMenu';
+@import './HomeCover';
+@import './ProductPresentationBox';
+@import './CategoriesCarousel';
+@import './CategoriesSquares';
+@import './PresentationBox';
+@import './Partners';
+@import './Footer';
+@import './PageTitle';
+@import './ContactsForm';
+
+@import './pages/index';
+@import './pages/ChiSiamo';
+@import './pages/DoveSiamo';
+@import './pages/Contatti';
+
+
+
+.content-wrapper{
+    margin: 1rem;
+    color: $primary;
+    font-family: 'Open Sans', sans-serif;
+    @include respond-to('medium'){
+        width: $body-width;
+        margin: 2rem auto;
+    }
+}
+

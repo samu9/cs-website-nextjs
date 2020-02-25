@@ -1,0 +1,20 @@
+@import 'node_modules/@fortawesome/fontawesome-svg-core/styles';
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    // -webkit-font-smoothing: antialiased;
+    // -moz-osx-font-smoothing: grayscale;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.5;
+    background-color: $bg;
+}
+
+h1,h2,h3{
+    font-family: 'Montserrat', sans-serif;
+}

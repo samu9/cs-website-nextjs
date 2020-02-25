@@ -1,0 +1,14 @@
+footer{
+    background-color: $primary;
+    font-family: 'Open Sans', sans-serif;
+    color: $text-light;
+    font-weight: 300;
+    padding: 1rem;
+    div{
+
+        @include respond-to('small'){
+            width: $body-width;
+            margin: auto;
+        }
+    }
+}

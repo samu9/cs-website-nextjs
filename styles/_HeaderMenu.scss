@@ -1,0 +1,159 @@
+$mobile-menu-width: 80vw;
+
+.header-menu{
+    width: 100%;
+    background-color: #f6f6f6;
+    z-index: 100;
+    // box-shadow: 0px 1px 2px #ddd;
+    nav{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: $nav-height;
+        width: 100%;
+        margin: auto;
+        
+        padding: 0 1rem;
+
+        @include respond-to('small'){
+            width: $tablet-width;
+            padding: 0;
+        }
+
+        @include respond-to('medium'){
+            width: $body-width;
+            padding: 0;
+        }
+
+
+        img{
+            width: 5rem;
+            padding-right: 1rem;
+        }
+
+        .menu{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+            width: $mobile-menu-width;
+            height: 100vh;
+            right: 0;
+            transition: transform 0.3s ease-out;
+            top: 0;
+            background-color: $bg;
+            box-shadow: -2px 0px 2px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            z-index: 9999;
+
+            @include respond-to('small'){
+                background-color: transparent;
+                position: relative;
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                box-shadow: 0px 0px 0px;
+                padding: 0;
+                span{
+                    flex-grow: 1;
+                }
+            }
+            &.closed{
+                transform: translateX($mobile-menu-width);
+                @include respond-to('small'){
+                    transform: translateX(0vw);
+                }
+            }
+            a{
+                position: relative;
+                text-decoration: none;
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                padding: 10px;
+                transition: 0.2s all ease-in-out;
+                @include respond-to('small'){
+                    align-items: center;
+                    width: auto;
+                    padding: 0px 10px;
+                    height: 100%;
+                }
+            }
+
+            .link{
+                color: $primary;
+
+                &:hover{
+                    color: $primary-light;
+                }
+                &:after{
+                    transition: 0.2s all ease-in-out;
+                    content: '';
+                    background: $primary;
+                    position: absolute;
+                    height: 0;
+                }
+                &.active &:not(.ecommerce){
+                    &:after{
+                        content: '';
+                        width: 5px;
+                        height: 100%;
+                        left: 0;
+                    }
+                }
+                @include respond-to('small'){
+
+                    &.active, &:hover{
+                        &:after{
+                            content: '';
+                            position: absolute;
+                            background: $primary;
+                            height: 5px;
+                            width: 100%;
+                            left: 0;
+                            bottom: 0;
+                        }
+                    }
+                }
+            }
+
+
+            .ecommerce{
+                background-color: #c53030;
+                color: $text-light;
+            }
+        }
+
+        .burger{
+            position: absolute;
+            right: 1rem;
+
+            @include respond-to('small'){
+                display: none;
+            }
+            i{
+                display: block;
+                width: 30px;
+                height: 2px;
+                margin: 8px;
+                background-color: $primary;
+            }
+        }
+    }
+
+    .backdrop{
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.3);
+        transition: opacity 0.3s ease-in-out;
+        opacity: 1;
+        // z-index: -1;
+        z-index: 1;
+        &.closed{
+            opacity: 0;
+        }
+    }
+}
