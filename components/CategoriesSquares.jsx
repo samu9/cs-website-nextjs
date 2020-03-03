@@ -40,7 +40,8 @@ class CategoriesSquares extends React.Component {
         super(props);
         this.state = {
             scroll: 0,
-            active: 0
+            active: 0,
+            scrolling: false
         }
         this.scrollable = React.createRef()
         this.scrollToActive = this.scrollToActive.bind(this)
@@ -48,45 +49,66 @@ class CategoriesSquares extends React.Component {
     }
 
 
-    scrollHorizontal() {
+    scrollHorizontal(e) {
+        // if(this.state.reqId){
+        //     window.cancelAnimationFrame(this.state.reqId)
+        // }
+        
         const marginLeft = parseFloat(getComputedStyle(this.scrollable.current.children[0]).marginLeft.replace("px", ""))
         const childWidth = this.scrollable.current.children[0].offsetWidth + marginLeft;
         const active = Math.floor(this.scrollable.current.scrollLeft / childWidth)
         this.setState({ active })
+        
     }
 
     scrollToActive(point) {
         this.setState({ active: point })
         const marginLeft = parseFloat(getComputedStyle(this.scrollable.current.children[0]).marginLeft.replace("px", ""))
         const childWidth = this.scrollable.current.children[0].offsetWidth + marginLeft;
-        const end = Math.round(childWidth * point + 1)
-        console.log(end)
+        const end = Math.ceil(childWidth * point)
         this.smoothScroll(new Date().getTime(), this.scrollable.current.scrollLeft, end)
     }
 
     smoothScroll(startTime, start, end) {
+        if(this.state.reqId){
+            window.cancelAnimationFrame(this.state.reqId)
+        }
+        // if(this.scrollable.current.scrollLeft == this.scrollable.current.scrollWidth){
+        //     console.log("end")
+        // }
+        
         const duration = 10000;
         if (!startTime) startTime = new Date().getTime()
         const elapsed = new Date().getTime() - startTime;
-        let step = Math.ceil((elapsed / duration) * (end - start))
-        if(elapsed > duration) step = 0;
-        console.log(step)
+        let step = end >= start? Math.ceil((elapsed / duration) * (end - start)) : Math.floor((elapsed / duration) * (end - start))
+        // if(elapsed > duration) step = 0;
+    
+        // console.log(step)
         if (Math.abs(this.scrollable.current.scrollLeft - end) == 1) {
+            console.log(elapsed)
             this.scrollable.current.scrollLeft = end
             return
         } else {
             this.scrollable.current.scrollLeft += step
-            window.requestAnimationFrame(() => this.smoothScroll(startTime, this.scrollable.current.scrollLeft, end))
+            const reqId = window.requestAnimationFrame(() => this.smoothScroll(startTime, this.scrollable.current.scrollLeft, end))
+            this.setState({reqId})
         }
     }
 
     componentDidMount() {
+        console.log(this.scrollable)
+    }
+
+    componentWillUnmount(){
+        if(this.state.reqId){
+            window.cancelAnimationFrame(this.state.reqId)
+        }
     }
 
     render() {
         return (
             <div className="categories-squares">
-                <div ref={this.scrollable} onScroll={() => this.scrollHorizontal()} className="categories-squares__content">
+                <div ref={this.scrollable} onScroll={() => this.scrollHorizontal(event)} className="categories-squares__content">
                     {/* <div className="swipe">
                     <FontAwesomeIcon style={{color: 'red'}} icon={faArrowRight} />
                 </div> */}

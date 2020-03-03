@@ -2,6 +2,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    @include respond-to("small"){
+        display: none;
+    }
     .point{
         display: block;
         width: .5rem;
