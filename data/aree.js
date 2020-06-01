@@ -57,7 +57,7 @@ export const aree = [
     },
     {
         nome: "Roberto Arbus",
-        tel: "",
+        tel: "3494369390",
         email: "robertoarbus60@gmail.com",
         regioni: ["sardegna"],
         colore: "hsl(110,41.3%,45%)"

@@ -98,9 +98,10 @@ class HomeCover extends React.Component {
                     {/* <a className="button">Prova ora!</a> */}
 
                 </div>
+
                 <img style={{
                     transform: 'translateY(' + this.props.scroll * 0.3 + 'px)'
-                }} src={require('../assets/images/strada-01.svg')} />
+                }} src={require('../assets/images/bg.svg')} />
                 <FontAwesomeIcon className="down-icon" style={{opacity: this.props.scroll > 20? 0 : 1}} icon={faArrowDown} />
             </section>
         )
